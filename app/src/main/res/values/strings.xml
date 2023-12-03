@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">jetpackNews</string>
+    <string name="onboarding">Onboarding</string>
+    <string name="onb1_title">Lorem Ipsum is simply dummy</string>
+    <string name="onb1_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="splash">Splash</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="trending">Trending</string>
+    <string name="see_all">See all</string>
+    <string name="latest">Latest</string>
+    <string name="now">Now</string>
+    <string name="hours_ago">%d hours ago</string>
+    <string name="ok">OK</string>
+    <string name="network_error">Network Error</string>
+    <string name="network_error_subtitle">You do not have an internet connection. Please try again.</string>
+    <string name="explore">Explore</string>
+</resources>
