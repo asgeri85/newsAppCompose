@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ConnectivityObserver {
 
-    enum class InternetStatus { AVAILABLE, UNAVAILABLE,LOST }
+    enum class InternetStatus { AVAILABLE, UNAVAILABLE, LOST }
 
     fun observe(): Flow<InternetStatus>
 }

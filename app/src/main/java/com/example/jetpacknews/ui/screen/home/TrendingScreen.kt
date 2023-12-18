@@ -17,9 +17,11 @@ import com.example.jetpacknews.ui.components.CustomTopBar
 @Composable
 @Preview
 fun TrendingScreen() {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
         Spacer(modifier = Modifier.height(24.dp))
         CustomTopBar(title = R.string.trending, modifier = Modifier.padding(horizontal = 16.dp))
     }

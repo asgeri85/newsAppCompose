@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
     private fun getTopNews() {
         viewModelScope.launch {
             homeUseCase.getTopNews("us").handleResult(onComplete = {
-                Log.e( "geşenData",it.toString())
+                Log.e("geşenData", it.toString())
                 setState(HomeUiState(isLoading = false, topNews = it))
             }, onError = {
 
