@@ -1,6 +1,7 @@
 package com.example.jetpacknews.ui.screen.onboarding
 
 import androidx.lifecycle.viewModelScope
+import com.example.jetpacknews.common.ConnectivityObserver
 import com.example.jetpacknews.common.NetworkConnectivityObserver
 import com.example.jetpacknews.common.base.BaseViewModel
 import com.example.jetpacknews.common.base.Effect
@@ -30,10 +31,11 @@ class SplashViewModel @Inject constructor(
 
     private fun checkNetworkConnection() {
         viewModelScope.launch {
-            val isConnection = networkConnectivityObserver.isNetworkAvailable()
-            setState(SplashUiState(networkStatus = isConnection))
-            if (isConnection) {
-                getOnboardingCase()
+            networkConnectivityObserver.observe().collectLatest {
+                setState(SplashUiState(networkStatus = it))
+                if (it == ConnectivityObserver.InternetStatus.AVAILABLE) {
+                    getOnboardingCase()
+                }
             }
         }
     }
@@ -49,7 +51,7 @@ class SplashViewModel @Inject constructor(
 
 data class SplashUiState(
     val isComplete: Boolean = false,
-    val networkStatus: Boolean = false
+    val networkStatus: ConnectivityObserver.InternetStatus = ConnectivityObserver.InternetStatus.UNAVAILABLE
 ) : State
 
 sealed interface SplashEffect : Effect

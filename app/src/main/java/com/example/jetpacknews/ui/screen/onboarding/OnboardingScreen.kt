@@ -15,11 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PageSize
-import androidx.compose.foundation.pager.PagerScope
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,8 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,8 +45,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel = hiltViewModel(),
-    navigateHome: () -> Unit
+    viewModel: OnboardingViewModel = hiltViewModel()
 ) {
 
     val imageList = listOf(
@@ -141,7 +135,7 @@ fun OnboardingScreen(
                         CustomButton(title = it) {
                             if (pagerState.currentPage == 2) {
                                 viewModel.setEvent(OnboardingEvent.OnboardingComplete)
-                                navigateHome.invoke()
+
                             } else {
                                 scope.launch {
                                     pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
@@ -153,4 +147,11 @@ fun OnboardingScreen(
             }
         }
     }
+}
+
+
+@Preview
+@Composable
+fun SplashPreview() {
+    OnboardingScreen()
 }

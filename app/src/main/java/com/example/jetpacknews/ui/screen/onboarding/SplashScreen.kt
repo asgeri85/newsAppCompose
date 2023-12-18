@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.jetpacknews.R
+import com.example.jetpacknews.common.ConnectivityObserver
 import com.example.jetpacknews.ui.components.LoadingLottie
 import kotlinx.coroutines.delay
 
@@ -45,7 +46,7 @@ fun SplashScreen(
 
     LaunchedEffect(key1 = state.value.networkStatus) {
         delay(2500)
-        if (state.value.networkStatus) {
+        if (state.value.networkStatus == ConnectivityObserver.InternetStatus.AVAILABLE) {
             if (state.value.isComplete) {
                 navigateHome.invoke()
             } else {
@@ -54,6 +55,7 @@ fun SplashScreen(
         } else {
             dialogOpen.value = true
         }
+
     }
 
     Column(
