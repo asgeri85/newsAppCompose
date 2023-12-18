@@ -7,11 +7,13 @@ import com.example.jetpacknews.R
 sealed class Screen(
     val route: String,
     @StringRes val name: Int,
-    @DrawableRes val icon: Int? = null
+    @DrawableRes val icon: Int? = null,
+    val subScreenList: List<String> = emptyList()
 ) {
 
     //BottomBar Screen
-    object HomeScreen : Screen("homeScreen", R.string.home, R.drawable.home)
+    object HomeScreen :
+        Screen("homeScreen", R.string.home, R.drawable.home, listOf("trendingScreen"))
 
     object ExploreScreen : Screen("exploreScreen", R.string.explore, R.drawable.compass)
 
@@ -23,5 +25,8 @@ sealed class Screen(
 
     object TrendingScreen : Screen("trendingScreen", R.string.trending)
 
+    object OnboardRoute : Screen("onboardingRoute", R.string.onboarding)
+
+    object AppRoute : Screen("appRoute", R.string.home)
 
 }

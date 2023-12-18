@@ -50,7 +50,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel = hiltViewModel()
+    viewModel: OnboardingViewModel = hiltViewModel(),
+    navigateHome: () -> Unit
 ) {
 
     val imageList = listOf(
@@ -140,7 +141,7 @@ fun OnboardingScreen(
                         CustomButton(title = it) {
                             if (pagerState.currentPage == 2) {
                                 viewModel.setEvent(OnboardingEvent.OnboardingComplete)
-
+                                navigateHome.invoke()
                             } else {
                                 scope.launch {
                                     pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
@@ -152,11 +153,4 @@ fun OnboardingScreen(
             }
         }
     }
-}
-
-
-@Preview
-@Composable
-fun SplashPreview() {
-    OnboardingScreen()
 }
