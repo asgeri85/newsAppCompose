@@ -30,7 +30,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,7 +44,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel = hiltViewModel()
+    viewModel: OnboardingViewModel = hiltViewModel(),
+    navigateHome: () -> Unit
 ) {
 
     val imageList = listOf(
@@ -135,7 +135,7 @@ fun OnboardingScreen(
                         CustomButton(title = it) {
                             if (pagerState.currentPage == 2) {
                                 viewModel.setEvent(OnboardingEvent.OnboardingComplete)
-
+                                navigateHome.invoke()
                             } else {
                                 scope.launch {
                                     pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
@@ -147,11 +147,4 @@ fun OnboardingScreen(
             }
         }
     }
-}
-
-
-@Preview
-@Composable
-fun SplashPreview() {
-    OnboardingScreen()
 }

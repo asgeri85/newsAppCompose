@@ -10,6 +10,8 @@ sealed class Screen(
     @DrawableRes val icon: Int? = null
 ) {
 
+    object AppRoute : Screen("appRoute", R.string.home)
+
     //BottomBar Screen
     object HomeScreen : Screen("homeScreen", R.string.home, R.drawable.home)
 

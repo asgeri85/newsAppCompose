@@ -1,6 +1,5 @@
 package com.example.jetpacknews.ui.screen.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.jetpacknews.common.base.BaseViewModel
 import com.example.jetpacknews.common.base.Effect
@@ -30,10 +29,10 @@ class HomeViewModel @Inject constructor(
     private fun getTopNews() {
         viewModelScope.launch {
             homeUseCase.getTopNews("us").handleResult(onComplete = {
-                Log.e("geşenData", it.toString())
                 setState(HomeUiState(isLoading = false, topNews = it))
             }, onError = {
-
+                setEffect(HomeEffect.ShowHomeError(it.message ?: "Error 404"))
+                setState(HomeUiState(isLoading = false, isError = true))
             }, onLoading = {
                 setState(HomeUiState(isLoading = true))
             })
@@ -43,10 +42,12 @@ class HomeViewModel @Inject constructor(
 
 data class HomeUiState(
     val isLoading: Boolean = false,
-    val topNews: List<ArticleUiModel> = emptyList()
+    val topNews: List<ArticleUiModel> = emptyList(),
+    val isError: Boolean = false
 ) : State
 
 sealed interface HomeEffect : Effect {
+    data class ShowHomeError(val message: String) : HomeEffect
 
 }
 
