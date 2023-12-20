@@ -3,6 +3,7 @@ package com.example.jetpacknews.ui.components
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -26,9 +27,13 @@ fun CustomButton(
     Button(
         onClick = {
             onClick.invoke()
-        }, colors = ButtonDefaults.buttonColors(
+        },
+        colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor, contentColor = titleColor
-        ), contentPadding = PaddingValues(vertical = 14.dp, horizontal = 24.dp), modifier = modifier
+        ),
+        contentPadding = PaddingValues(vertical = 14.dp, horizontal = 24.dp),
+        modifier = modifier,
+        shape = RoundedCornerShape(6.dp)
     ) {
         Text(text = stringResource(id = title), fontSize = 16.sp, fontWeight = FontWeight.W600)
     }

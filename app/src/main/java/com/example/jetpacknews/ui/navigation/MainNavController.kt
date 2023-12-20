@@ -19,7 +19,7 @@ fun MainNavController() {
             SplashScreen(navigateOnboarding = {
                 navController.navigate(Screen.OnboardingScreen.route)
             }, navigateHome = {
-                navController.navigate(Screen.AppRoute.route)
+                navController.navigate(Screen.AuthRoute.route)
             })
         }
         composable(route = Screen.OnboardingScreen.route) {
@@ -27,6 +27,7 @@ fun MainNavController() {
                 navController.navigate(Screen.AppRoute.route)
             })
         }
+        authGraph(navController)
         composable(route = Screen.AppRoute.route) {
             AppRouteScreen()
         }

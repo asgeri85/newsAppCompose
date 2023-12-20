@@ -10,6 +10,13 @@ sealed class Screen(
     @DrawableRes val icon: Int? = null
 ) {
 
+    //Auth Screen
+
+    object AuthRoute : Screen("authRoute", R.string.login)
+
+    object LoginScreen : Screen("loginScreen", R.string.login)
+
+
     object AppRoute : Screen("appRoute", R.string.home)
 
     //BottomBar Screen
